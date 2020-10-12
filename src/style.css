@@ -1,0 +1,313 @@
+a {
+	color: #fbb;
+}
+a:hover {
+	color: #fdd;
+}
+
+*:focus {
+	outline: 1px dotted #a00;
+}
+
+body {
+	background: black;
+}
+
+input {
+	background: #222;
+	border: 1px solid #444;
+	color: white;
+	padding: 5px;
+}
+
+#editor { 
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 310px;
+	top: 25px;
+	font-size: 16px;
+}
+
+.spacer {
+	position: relative;
+	display: inline-block;
+	min-width: 20px;
+}
+
+.workspace-id {
+	font-weight: bold;
+}
+
+.electron-button {
+	display: none;
+}
+.electron-inline, .electron-block, .electron-inline-block {
+	display: none;
+}
+
+#menu-top {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	height: 25px;
+	box-sizing: border-box;
+	padding: 5px;
+	color: white;
+	font-family: Arial;
+	background: #544;
+	background-image: linear-gradient(to right, #544, #333);
+}
+
+#menu-panel, #menu-panel-fullsize {
+	position: absolute;
+	z-index: 1;
+	background: #333;
+	color: white;
+	padding: 10px;
+	font-family: sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	max-height: 100%;
+	overflow: auto;
+	box-shadow: 0px 0px 5px #222;
+}
+#menu-panel {
+	width: 290px;
+}
+#menu-panel-fullsize {
+	left: 0px;
+}
+
+#admin-panel {
+	display: none;
+}
+
+.panel-header {
+	background: #444;
+	padding: 10px;
+	margin: 5px 0px;
+	display: inline-block;
+	width: calc(100% - 10px);
+	border-bottom-color: #a55;
+}
+b.panel-header {
+	font-size: 18px;
+	box-shadow: -2px 1px 5px #302222;
+}
+
+#menu-panel-fullsize > b.panel-header {
+	text-align: center;
+	font-size: 24px;
+}
+#menu-panel-fullsize > details > .panel-header {
+	font-size: 18px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.user, .option {
+	display: inline-block;
+	background: #333;
+	padding: 5px;
+	width: calc(100% - 10px);
+	border-bottom: 2px solid #444;
+	margin-bottom: 5px;
+}
+.user:hover, .option:hover {
+	border-bottom-color: #555;
+}
+.user.1 {
+	border-bottom-color: #595;
+}
+
+button, input, select {
+	background: #222;
+	cursor: pointer;
+	border: none;
+	padding: 5px;
+	float: right;
+	color: white;
+	margin-right: 2px;
+}
+button:hover, button:focus, input:hover, select:hover {
+	background: #655;
+}
+option {
+	background: white;
+	color:black;
+}
+optgroup {
+	color:black;
+}
+
+input {
+	cursor: text;
+}
+input:hover {
+	background: #322;
+}
+
+.finput-wrapper {
+	pointer-events: auto;
+	float:right;
+	position:relative;
+	padding: 0px;
+	background: #222;
+	margin-right: 2px;
+}
+.finput-wrapper > .finput-fake {
+	float: right;
+	position: absolute;
+	cursor: pointer;
+	top: 7px;
+	left: 0px;
+}
+.finput-button {
+	/*background: #322;
+	padding: 7px 5px;
+	position: relative;
+	width: 50px;
+	height: 50px;*/
+	pointer-events: none;
+	position: absolute;
+	background: #322;
+	top: 0;
+	left: 0;
+	font-size: 15px;
+	padding: 6px 3px;
+}
+input[type=file] {
+	float: none;
+	display: inline;
+	max-width: 135px;
+	background: transparent;
+	cursor: pointer;
+	z-index: 2;
+	opacity: 100%;
+	padding: 3px 5px;
+	padding-bottom: 4px;
+	margin: 0px;
+}
+input[type=file] > *, input[type=file] * {
+	cursor:pointer;
+}
+input[type=file].larger {
+	max-width: 195px;
+}
+
+summary {
+	cursor: pointer;
+	margin-bottom: 10px;
+}
+summary.panel-header::before {
+	content: "+ "
+}
+details:hover > summary.panel-header {
+	background-color: #504444;
+}
+summary::-webkit-details-marker {
+  color: transparent;
+}
+
+.eOrangeUser {
+	position: absolute;
+	background-color: orange;
+	min-width: 5px;
+}
+.userNameIndicator {
+	background: #fffa;
+	z-index: 1;
+	padding: 2px;
+	border-radius: 3px;
+	font-family: Arial;
+}
+.prompt-box {
+	position: absolute;
+    z-index: 9;
+	margin: 0 auto;
+    text-align: center;
+	background: #444;
+	font-family: Arial;
+	color: white;
+	box-shadow: 0px 0px 5px #222; 
+    cursor: default;
+    z-index: 10;
+	padding: 5px;
+	min-width: 200px;
+	max-width: 250px;
+}
+.prompt-box > input {
+	width: calc(100% - 15px);
+	margin-bottom: 5px;
+}
+.prompt-box > button {
+	padding: 5px;
+	margin-left: 5px;
+}
+.prompt-box-header {
+	position: relative;
+	
+    text-align: center;
+	background: #555;
+    cursor: move;
+    z-index: 10;
+	padding: 5px;
+	margin-bottom: 10px;
+	box-shadow: -1px 1px 3px #302222;
+}
+.prompt-box-content {
+	margin: 5px;
+}
+.button-primary {
+	padding: 5px;
+}
+.button-primary:hover {
+	background: #855;
+}
+.button-unimportant {
+	background: #444;
+}
+
+/* -- dropdowns -- */
+
+.dropdown {
+	cursor: pointer;
+	display: inline-block;
+}
+.dropdown-title {
+	cursor: pointer;
+	padding: 5px 7px;
+	margin-right: -5px;
+}
+.dropdown:hover > .dropdown-title {
+	background: #333;
+}
+.dropdown > .dropdown-contents {
+	display: none;
+}
+.dropdown-contents > button {
+	float: none;
+	display: block;
+	width: 100%;
+	text-align: left;
+	background: #333;
+	padding-right: 25px;
+	min-width: 100px;
+}
+.dropdown-contents > button:hover {
+	background: #544;
+}
+.dropdown:hover > .dropdown-contents > button.electron-block {
+	display: none;
+}
+.dropdown:hover > .dropdown-contents {
+	display: block;
+	position: absolute;
+	padding: 5px;
+	background: #333;
+	box-shadow: 2px 2px 5px #544;
+	z-index: 99;
+}

@@ -1,0 +1,11 @@
+{
+  "name": "pyroide",
+  "version": "1.0.0",
+  "description": "A collaborative Python-focused IDE",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Jesse K.",
+  "license": "UNLICENSED"
+}

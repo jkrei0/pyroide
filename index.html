@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>PyroIDE{{#spaceID}} - {{spaceID}}{{/spaceID}}</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="/src/style.css">
+		<script src="/src/dragging.js"></script>
+	</head>
+	<body>
+		
+		<div id="menu-top">
+			<div class="dropdown">
+				<span class="dropdown-title">File</span>
+				<div class="dropdown-contents">
+					<button class="electron-block" onclick="downloadProjectFile()">Save Project(Ctrl+S)</button>
+					<button class="electron-block" onclick="openProjectFile()">Open (Ctrl+O)</button>
+					<button class="electron-block" onclick="runProject()">Run (Ctrl+R)</button>
+					<button onclick="saveFile()">Save File</button>
+					<button onclick="deleteFile()">Delete File</button>
+				</div>
+			</div>
+			<div class="dropdown">
+				<span class="dropdown-title">New</span>
+				<div class="dropdown-contents">
+					<button onclick="createFile(undefined, '.py')">Python</button>
+					<button onclick="createFile(undefined, '.txt')">Plain Text</button>
+					<button onclick="createFile(undefined, '.json')">JSON</button>
+					<button onclick="createFile(undefined, '.js')">JavaScript</button>
+					<button onclick="createFile(undefined, '.html')">HTML</button>
+					<button onclick="createFile(undefined, '.xml')">XML</button>
+					<button onclick="createFile(undefined, '.css')">CSS</button>
+					<button onclick="createFile(undefined, '.php')">PHP</button>
+				</div>
+			</div>
+			<div class="dropdown">
+				<span class="dropdown-title">Workspace</span>
+				<div class="dropdown-contents">
+					<button class="electron-block" onclick="navigateToPyroHome()">Launcher Home</button>
+					<button onclick="window.location.href = '/'">Leave workspace</button>
+					<button onclick="window.location.href = '/create/'">New workspace</button>
+					<button onclick="window.location.href = '/join/_testing'">Testing workspace</button>
+					<button class="electron-block" onclick="reloadIgnoringCache()">Force Reload</button>
+					<button class="electron-block" onclick="toggleDevTools()">Toggle Dev Tools</button>
+				</div>
+			</div>
+			<div class="dropdown">
+				<span class="dropdown-title">View</span>
+				<div class="dropdown-contents">
+					<button class="electron-block" onclick="setFullScreen(false)">Windowed</button>
+					<button class="electron-block" onclick="setFullScreen(true)">Fullscreen</button>
+					<button onclick="setSidebarMenu('none', '0px')">Hide sidebar menu</button>
+					<button onclick="setSidebarMenu('block', '310px')">Show sidebar menu</button>
+				</div>
+			</div>
+		</div>
+		
+		<div id="menu-panel">
+			<b class="panel-header">Menu Panel</b>
+			
+			<details open>
+				<summary class="panel-header">Workspace</summary>
+				{{^spaceID}}
+					<a href="/create/">Start new workspace</a><br><br>
+					<a href="#" onclick='cPrompt({text:"Enter a workspace code", okay:"Join Workspace", cancel:"Cancel"}, (value) => {window.location.href="/join/" + value});'>Connect to workspace</a><br>
+				{{/spaceID}}
+				{{#spaceID}}
+					Workspace code:
+					<span class="workspace-id">{{spaceID}}</span><br>
+					<a href="/">Leave workspace</a>
+				{{/spaceID}}
+				<br>
+				{{#join_redir}}
+					<script>
+						cAlert({text:"Workspace created.", description:"Your workspace code is {{redir_spaceID}}", cancel:false}, ()=>{window.location.href="/join/{{redir_spaceID}}";});
+					</script>
+				{{/join_redir}}
+			</details>
+			
+			<details {{#spaceID}}open{{/spaceID}}>
+				<summary class="panel-header">Connected users</summary>
+				<div id="users">
+					<div class="user">
+						Just you :)
+					</div>
+				</div>
+			</details>
+			
+			<details open>
+				<summary class="panel-header">Options</summary>
+				<div class="options">
+					{{#spaceID}}
+					<div class="option">
+						Current file
+						<select id="fileslistselector" onchange="loadFile(this.value)">
+							<option selected>index.py</option>
+							<option>config.json</option>
+						</select>
+					</div>
+					{{/spaceID}}
+					<div class="option">
+						Syntax Highlighting
+						<select id="syntaxmode" onchange="setLanguage(this.value)">
+							<option value="text">Plain text</option>
+							<option selected value="python">Python</option>
+							<option value="javascript">JavaScript</option>
+							<option value="json">JSON</option>
+							<option value="html">HTML</option>
+							<option value="css">CSS</option>
+							<option value="php">PHP</option>
+							<option value="lua">Lua</option>
+							<option value="actionscript">ActionScript</option>
+							<option value="coffee">Coffee</option>
+							<option value="c_cpp">C++</option>
+							<option value="csharp">C#</option>
+							<option value="haskell">Haskell</option>
+							<option value="java">Java</option>
+						</select>
+					</div>
+					<div class="option">
+						Theme
+						<select onchange="setTheme(this.value)" onload="setTheme(this.value)">
+							<option value="crimson_editor">Crimson Editor</option>
+							<option>Dawn</option>
+							<option>GitHub</option>
+							<option>IPlastic</option>
+							<option>Kuroir</option>
+							<option value="solarized_light">Solarized Light</option>
+							<option>Ambiance</option>
+							<option>Chaos</option>
+							<option value="idle_fingers">idle Fingers</option>
+							<option>Dracula</option>
+							<option>Terminal</option>
+							<option value="tomorrow_night">Tomorrow Night</option>
+							<option value="tomorrow_night_eighties" selected>Tomorrow Night 80s</option>
+						</select>
+					</div>
+				</div>
+			</details>
+			
+			{{#spaceID}}
+			<details open id="electron-project-manager" class="electron-block">
+				<summary class="panel-header">Project Manager</summary>
+				<div class="option" id="electron-download-all" style="display:none;">
+					Save project
+					<button onclick="downloadProjectFile()" title="Save (Ctrl + S)">Save</button>
+				</div>
+				<div class="option" id="electron-open-all" style="display:none;">
+					Run project
+					<button onclick="runProject()" title="Save and Run (Ctrl + R)">Save & Run</button>
+				</div>
+				<div class="option">
+					Open project
+					<button onclick="openProjectFile()" title="Open Project (Ctrl + O)">Open project</button>
+				</div>
+			</details>
+			
+			<details>
+				<summary class="panel-header">File Manager</summary>
+				<div class="option">
+					Download File
+					<button onclick="downloadCurrentFile()">Download</button>
+				</div>
+				<div id="admin-panel">
+					<div class="panel-content">
+						<div class="option">
+							<button onclick="uploadFile()">Upload</button>
+							<span class="finput-wrapper">
+								<!---<span class="finput-fake"><span class="finput-button">Select File</span></span>-->
+								<input type="file" class="larger" id="file-input">
+								<!--<span class="finput-button">Upload File</span>-->
+							</span>
+						</div>
+						<div class="option">
+							New File <button onclick="createFile()">Create</button>
+							<select id="newfiletype">
+								<optgroup label="Program file">
+									<option selected>.py</option>
+									<option>.js  </option>
+									<option>.html</option>
+									<option>.css </option>
+									<option>.php </option>
+									<option>.cpp </option>
+									<option>.h   </option>
+									<option>.c   </option>
+									<option>.java</option>
+								</optgroup>
+								<optgroup label="Data file">
+									<option>.json</option>
+									<option>.xml </option>
+									<option>.txt </option>
+								</optgroup>
+								<!--<optgroup label="Image file">
+									<option>.png </option>
+									<option>.jpg </option>
+									<option>.jpeg</option>
+									<option>.gif </option>
+									<option>.svg </option>
+								</optgroup>-->
+							</select>
+						</div>
+						<div class="option">
+							Delete Current File <button onclick="deleteFile()">Delete</button>
+						</div>
+						<div class="option">
+							Save File <button onclick="saveFile()">Save Now</button>
+						</div>
+					</div>
+				</div>
+			</details>
+			{{/spaceID}}
+		</div>
+	
+		<div id="editor">{{#spaceID}}# Loading document ... Please wait ...
+# note the default language is python. You can change this in the sidebar.{{/spaceID}}{{^spaceID}}# Welcome! Try out the basic editor here, or start/join a workspace (it's free) to access the full functionality.{{/spaceID}}</div>
+			
+		<!--<script src="/src/ace/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+		<script>var spaceID = "{{spaceID}}"
+		online = {{#spaceID}}true; //{{/spaceID}} false;
+		</script>
+		<script src="/src/editor_setup.js"></script>
+	</body>
+</html>

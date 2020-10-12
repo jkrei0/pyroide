@@ -1,0 +1,23 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDozTS0MshdpVCXFvbPN3DGxI2Bn_F9Uxs",
+    authDomain: "py-collab.firebaseapp.com",
+    databaseURL: "https://py-collab.firebaseio.com",
+    projectId: "py-collab",
+    storageBucket: "py-collab.appspot.com",
+    messagingSenderId: "462575972240",
+    appId: "1:462575972240:web:f6790907530e9f792e4d15",
+    measurementId: "G-PZPPPWLPF4"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>

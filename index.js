@@ -84,6 +84,52 @@ let server = http.createServer(function (request, response) {
 		} else if (request.url.startsWith("/_electronAppCheck")) {
 			response.writeHead(200, {'Content-Type': 'text/html'});
 			response.end("true");
+		} else if (request.url.startsWith("/changelog")) {
+			response.writeHead(200, {'Content-Type': 'text/html'});
+			response.end(`
+				<head>
+					<link rel="stylesheet" href="/src/style.css">
+					<title>PyroIDE Changelog</title>
+				</head>
+				<body>
+					<div id="menu-panel-fullsize">
+						<b class="panel-header">PyroIDE Changelog</b>
+						<details>
+							<summary id="wa-v1.0.2"  class="panel-header"><a href="#wa-v1.0.2" title="permalink">#</a> Webapp version 1.0.2</summary>
+							wa-v1.0.2
+							<ul>
+								<li>Fixed crash when administrators change user permissions</li>
+								<li>Added changelog page to server</li>
+								<li>Modified package.json</li>
+							</ul>
+						</details>
+						<details>
+							<summary id="dl-v1.0.1"  class="panel-header"><a href="#dl-v1.0.1" title="permalink">#</a> Desktop <b>Launcher</b> Version 1.0.1</summary>
+							dl-v1.0.1
+							<ul>
+								<li>Fixed system for detecting active & valid servers.</li>
+								<li>Added changelog page to launcher</li>
+								<li>Nested development servers within the collapsed server list</li>
+							</ul>
+						</details>
+						<details>
+							<summary id="wd-v1.0.0"  class="panel-header"><a href="#wd-v1.0.0" title="permalink">#</a> Webapp <b>desktop</b> Version 1.0.0</summary>
+							wd-v1.0.0
+							<ul>
+								<li>Added the ability to open, download, projects</li>
+								<li>Added the ability to run projects (exact command chosen in the config.json file)</li>
+							</ul>
+						</details>
+						<details>
+							<summary id="wa-v1.0.0"  class="panel-header"><a href="#wa-v1.0.0" title="permalink">#</a> Webapp Version 1.0.0</summary>
+							wa-v1.0.0
+							<ul>
+								<li>Initial version. Includes all other unlisted features.</li>
+							</ul>
+						</details>
+					</div>
+				</body>
+			`);
 		} else {
 			response.writeHead(404, {'Content-Type': 'text/html'});
 			response.end("This doesn't exist. <a href='/'>Home</a>");

@@ -90,7 +90,7 @@ let server = http.createServer(function (request, response) {
 		}
 	}
 	
-}).listen(8080);
+}).listen(process.env.PORT || 8080);
  // ooh lookie a new comment
 console.log( server.address() );
 

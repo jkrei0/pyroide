@@ -222,9 +222,8 @@ io.on('connection', (socket) => {
 					mutedUser.socket.emit("mute");
 				}
 				
-				
-				allSockets[socket._data.userlist[1].id].socket._data.permission = 2;
-				allSockets[socket._data.userlist[1].id].socket.emit("permission change", 2);
+				mutedUser.socket._data.permission = 2;
+				mutedUser.socket.emit("permission change", 2);
 				socket.emit('update user list', socket._data.userlist);
 			}
 			mutedUser.socket._data.permission = 0;

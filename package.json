@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node index.js"
   },
-  "author": "Jesse K.",
+  "author": "Jesse",
   "license": "UNLICENSED",
   "dependencies": {
     "mustache": "^4.0.1",

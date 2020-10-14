@@ -1,16 +1,19 @@
 {
-  "name": "pyroide",
-  "version": "1.0.2",
-  "description": "A collaborative Python-focused IDE",
+  "name": "weather",
+  "version": "1.7.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
+  "repository": "https://github.com/99banana/newweather",
   "author": "Jesse",
-  "license": "UNLICENSED",
+  "license": "MPL-2.0",
   "dependencies": {
     "mustache": "^4.0.1",
     "node-static": "^0.7.11",
-    "socket.io": "^2.3.0"
+    "openode": "^2.0.30",
+    "request": "^2.88.2"
   }
 }

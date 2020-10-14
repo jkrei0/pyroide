@@ -1,13 +1,16 @@
 {
-  "name": "weather",
+  "name": "newweather",
   "version": "1.7.0",
-  "description": "",
+  "description": "NewWeather is a small open-source project based on [canvasJS](https://canvasjs.com/), [Node.js](https://nodejs.org/en/), and the [US National Weather Service API](https://www.weather.gov/documentation/services-web-api).",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "repository": "https://github.com/99banana/newweather",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/99banana/newweather.git"
+  },
   "author": "Jesse",
   "license": "MPL-2.0",
   "dependencies": {
@@ -15,5 +18,10 @@
     "node-static": "^0.7.11",
     "openode": "^2.0.30",
     "request": "^2.88.2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/99banana/newweather/issues"
+  },
+  "homepage": "https://github.com/99banana/newweather#readme",
+  "devDependencies": {}
 }

@@ -25,7 +25,7 @@ input {
 	bottom: 0px;
 	left: 0px;
 	right: 310px;
-	top: 25px;
+	top: 63px;
 	font-size: 16px;
 }
 
@@ -58,6 +58,41 @@ input {
 	font-family: Arial;
 	background: #544;
 	background-image: linear-gradient(to right, #544, #333);
+}
+
+#menu-file-tabs {
+	position: absolute;
+	top: 25px;
+	left: 0px;
+	right: 0px;
+	height: 35px;
+	box-sizing: border-box;
+	padding: 5px;
+	color: white;
+	font-family: Arial;
+	background: #544;
+	background-image: linear-gradient(to right, #544, #333);
+}
+#tabs-code-spacer {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	height: 3px;
+	background: #333;
+	top: 60px;
+}
+.file-tab {
+	float: none;
+	display: inline-block;
+	position: relative;
+	top: 3px;
+	background: #2220;
+	padding: 5px 20px;
+	margin-right: -2px;
+}
+.file-tab.active {
+	background: #333;
+	border-top: 2px solid #655;
 }
 
 #menu-panel, #menu-panel-fullsize {
@@ -279,10 +314,13 @@ summary::-webkit-details-marker {
 }
 .dropdown-title {
 	cursor: pointer;
-	padding: 5px 7px;
+	padding: 4px 7px;
 	margin-right: -5px;
 }
 .dropdown:hover > .dropdown-title {
+	background: #655;
+}
+.dropdown:focus > .dropdown-title, .dropdown:focus-within > .dropdown-title {
 	background: #333;
 }
 .dropdown > .dropdown-contents {
@@ -300,10 +338,10 @@ summary::-webkit-details-marker {
 .dropdown-contents > button:hover {
 	background: #544;
 }
-.dropdown:hover > .dropdown-contents > button.electron-block {
+/*.dropdown:hover > .dropdown-contents > button.electron-block,*/ .dropdown:focus > .dropdown-contents > button.electron-block, .dropdown:focus-within > .dropdown-contents > button.electron-block {
 	display: none;
 }
-.dropdown:hover > .dropdown-contents {
+/*.dropdown:hover > .dropdown-contents,*/ .dropdown:focus > .dropdown-contents, .dropdown:focus-within > .dropdown-contents {
 	display: block;
 	position: absolute;
 	padding: 5px;

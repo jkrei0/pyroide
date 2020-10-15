@@ -240,6 +240,11 @@ if (online) {
 		document.getElementById("syntaxmode").value = file.syntax;
 		editor.setSession(file.session);
 		currentFileName = fileName;
+		
+		for (element of document.getElementsByClassName('file-tab')) {
+			element.classList.remove('active');
+		}
+		document.getElementById(`file-tab-${fileName}`).classList.add('active');
 	}
 	
 	function onEditorChange(delta) {
@@ -254,16 +259,22 @@ if (online) {
 			filesList = list;
 		}
 		filesSelect = document.getElementById("fileslistselector");
-		content = ""
+		fileTabBar = document.getElementById("menu-file-tabs");
+		selectContent = "";
+		tabsContent = ""
 		for (file in filesList) {
 			file = filesList[file];
-			content += `<option`;
+			selectContent += `<option`;
+			tabsContent += `<button onclick="loadFile('${file.name + file.extension}')" id="file-tab-${file.name + file.extension}" class="file-tab`;
 			if (file.name + file.extension == currentFileName) {
-				content += " selected";
+				selectContent += " selected";
+				tabsContent += " active";
 			}
-			content += `>${file.name + file.extension}</option>`
+			selectContent += `>${file.name + file.extension}</option>`
+			tabsContent += `">${file.name + file.extension}</button>`
 		}
-		filesSelect.innerHTML = content;
+		filesSelect.innerHTML = selectContent;
+		fileTabBar.innerHTML = tabsContent;
 		for (file in filesList) {
 			if (recreate_sessions) {
 				fileSyntax = fileTypes.syntaxFromExt[filesList[file].extension];

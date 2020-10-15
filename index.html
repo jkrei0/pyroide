@@ -10,7 +10,7 @@
 		
 		<div id="menu-top">
 			<div class="dropdown">
-				<span class="dropdown-title">File</span>
+				<span tabindex="0" class="dropdown-title">File</span>
 				<div class="dropdown-contents">
 					<button class="electron-block" onclick="downloadProjectFile()">Save Project(Ctrl+S)</button>
 					<button class="electron-block" onclick="openProjectFile()">Open (Ctrl+O)</button>
@@ -20,7 +20,7 @@
 				</div>
 			</div>
 			<div class="dropdown">
-				<span class="dropdown-title">New</span>
+				<span tabindex="0" class="dropdown-title">New</span>
 				<div class="dropdown-contents">
 					<button onclick="createFile(undefined, '.py')">Python</button>
 					<button onclick="createFile(undefined, '.txt')">Plain Text</button>
@@ -33,7 +33,7 @@
 				</div>
 			</div>
 			<div class="dropdown">
-				<span class="dropdown-title">Workspace</span>
+				<span tabindex="0" class="dropdown-title">Workspace</span>
 				<div class="dropdown-contents">
 					<button class="electron-block" onclick="navigateToPyroHome()">Launcher Home</button>
 					<button onclick="window.location.href = '/'">Leave workspace</button>
@@ -44,7 +44,7 @@
 				</div>
 			</div>
 			<div class="dropdown">
-				<span class="dropdown-title">View</span>
+				<span tabindex="0" class="dropdown-title">View</span>
 				<div class="dropdown-contents">
 					<button class="electron-block" onclick="setFullScreen(false)">Windowed</button>
 					<button class="electron-block" onclick="setFullScreen(true)">Fullscreen</button>
@@ -53,6 +53,12 @@
 				</div>
 			</div>
 		</div>
+		
+		<div id="menu-file-tabs">
+			<button id="file-tab-index.py" class="file-tab active" onclick="loadFile('index.py')">index.py</button>
+			<button id="file-tab-config.json" class="file-tab" onclick="loadFile('index.py')">config.json</button>
+		</div>
+		<div id="tabs-code-spacer"></div>
 		
 		<div id="menu-panel">
 			<b class="panel-header">Menu Panel</b>

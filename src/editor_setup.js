@@ -441,20 +441,22 @@ if (online) {
 			return;
 		}
 		let fileInput = document.getElementById("file-input");
-		let file = fileInput.files[0];
-		if (file) {
-			let reader = new FileReader();
-			reader.readAsText(file, "UTF-8");
-			reader.onload = function (evt) {
-				//document.getElementById("fileContents").innerHTML = evt.target.result;
-				let ext = file.name.split('.').pop().replace(/\.$/g, "");
-				let name_regex = new RegExp("\\." + ext + "$", 'g');
-				let raw_name = file.name.replace(name_regex, "")
-				console.log(raw_name, ext);
-				createFile(raw_name, "." + ext, evt.target.result);
-			}
-			reader.onerror = function (evt) {
-				document.getElementById("fileContents").innerHTML = "error reading file";
+		//let file = fileInput.files[0];
+		for (let file of fileInput.files) {
+			if (file) {
+				let reader = new FileReader();
+				reader.readAsText(file, "UTF-8");
+				reader.onload = function (evt) {
+					//document.getElementById("fileContents").innerHTML = evt.target.result;
+					let ext = file.name.split('.').pop().replace(/\.$/g, "");
+					let name_regex = new RegExp("\\." + ext + "$", 'g');
+					let raw_name = file.name.replace(name_regex, "")
+					console.log(raw_name, ext);
+					createFile(raw_name, "." + ext, evt.target.result);
+				}
+				reader.onerror = function (evt) {
+					document.getElementById("fileContents").innerHTML = "error reading file";
+				}
 			}
 		}
 	}
